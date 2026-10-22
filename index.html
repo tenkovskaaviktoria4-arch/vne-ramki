@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17171D">
+<title>ВНЕ РАМКИ — фестиваль молодёжного самовыражения</title>
+<meta name="description" content="ВНЕ РАМКИ — фестиваль молодёжного самовыражения в Петропавловске. Выйди за рамки. Покажи себя!">
+
+<style>
+:root {
+  --bg:#17171D;
+  --pink:#FF4F91;
+  --purple:#A875FF;
+  --turquoise:#37D6C0;
+  --cream:#F7F4EE;
+  --muted:#AAA8B5;
+  --panel:#22212B;
+  --line:rgba(247,244,238,.13);
+}
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth;scroll-padding-top:85px}
+body {
+  background:var(--bg);
+  color:var(--cream);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+a {color:inherit;text-decoration:none}
+button {font:inherit}
+::selection {background:var(--pink);color:var(--bg)}
+.container {width:min(1160px,90%);margin:auto}
+section {padding:100px 0;position:relative}
+.eyebrow {
+  color:var(--turquoise);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+h1,h2,h3 {line-height:1.05;letter-spacing:-1.5px}
+h2 {font-size:clamp(32px,5vw,58px);margin-bottom:24px}
+p {color:var(--muted)}
+.accent {color:var(--pink)}
+.gradient-text {
+  background:linear-gradient(100deg,var(--pink),var(--purple),var(--turquoise));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:15px 23px;
+  border:1px solid transparent;
+  border-radius:7px;
+  background:var(--pink);
+  color:#17171D;
+  font-size:14px;
+  font-weight:800;
+  transition:.25s;
+  cursor:pointer;
+}
+.btn:hover {transform:translateY(-3px);box-shadow:0 10px 35px #ff4f9140}
+.btn-outline {background:transparent;border-color:var(--line);color:var(--cream)}
+.btn-outline:hover {border-color:var(--turquoise);box-shadow:none}
+.btn:focus-visible,a:focus-visible {outline:2px solid var(--turquoise);outline-offset:4px}
+header {
+  position:fixed;top:0;left:0;width:100%;z-index:100;
+  background:#17171DDF;backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+}
+.nav {height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo {font-size:19px;font-weight:1000;letter-spacing:1px}
+.logo span {color:var(--pink)}
+.nav-links {display:flex;align-items:center;gap:27px;font-size:12px;font-weight:700}
+.nav-links a {color:var(--muted);transition:.2s}
+.nav-links a:hover {color:var(--turquoise)}
+.menu-btn {
+  display:none;background:none;color:var(--cream);
+  border:1px solid var(--line);border-radius:7px;padding:8px 12px;cursor:pointer
+}
+.hero {
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;align-items:center;
+  padding:125px 0 75px;
+  overflow:hidden;
+}
+.hero-grid {
+  display:grid;grid-template-columns:1.1fr .9fr;
+  align-items:center;gap:35px;
+}
+.hero h1 {
+  font-size:clamp(66px,11vw,145px);
+  font-weight:1000;letter-spacing:-8px;
+  line-height:.79;margin:28px 0;
+}
+.hero h1 .line2 {display:block;margin-top:15px}
+.hero-description {font-size:18px;max-width:490px;margin:28px 0}
+.hero-actions {display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta {display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.pill {
+  border:1px solid var(--line);border-radius:100px;
+  padding:9px 13px;font-size:12px;color:var(--cream)
+}
+.hero-art {
+  min-height:460px;position:relative;
+  display:grid;place-items:center;
+}
+.art-orb {
+  width:min(360px,75vw);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 32% 25%,#FF4F91 0, #A875FF 38%,#37304C 67%,transparent 72%);
+  filter:drop-shadow(0 0 70px #a875ff33);
+  animation:float 7s ease-in-out infinite;
+}
+.art-ring {
+  position:absolute;width:390px;height:390px;max-width:95%;
+  border:1px solid #37D6C066;border-radius:50%;
+  transform:rotate(-28deg) scaleY(.6);
+}
+.art-ring.two {
+  border-color:#FF4F9170;transform:rotate(55deg) scaleY(.6);
+}
+.art-frame {
+  position:absolute;width:260px;height:315px;
+  border:2px solid var(--cream);transform:rotate(-8deg);
+  display:grid;place-items:center;
+}
+.art-frame::before {
+  content:"";position:absolute;inset:13px;
+  border:1px solid #F7F4EE60;
+}
+.art-frame strong {
+  font-size:clamp(58px,9vw,100px);font-weight:1000;
+  line-height:.8;text-align:center;letter-spacing:-7px;
+  text-shadow:0 5px 35px #17171D70;
+}
+.art-frame strong span {color:var(--turquoise)}
+.art-sticker {
+  position:absolute;right:1%;top:13%;
+  background:var(--turquoise);color:var(--bg);
+  font-weight:900;padding:13px 16px;transform:rotate(8deg);
+  font-size:12px;
+}
+.art-star {position:absolute;left:0;bottom:12%;font-size:50px;color:var(--pink)}
+.scroll-note {
+  position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+  color:var(--muted);font-size:10px;letter-spacing:3px
+}
+.marquee {overflow:hidden;border-block:1px solid var(--line);padding:19px 0}
+.marquee-track {
+  display:flex;white-space:nowrap;width:max-content;
+  animation:marquee 28s linear infinite;
+  gap:30px;font-weight:900;font-size:17px;letter-spacing:2px;
+}
+.marquee-track span:nth-child(odd) {color:var(--pink)}
+.marquee-track span:nth-child(even) {color:var(--turquoise)}
+.about-grid {display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-copy {font-size:17px;line-height:1.9}
+.about-copy p+p {margin-top:17px}
+.quote-card {
+  background:linear-gradient(135deg,#A875FF22,#FF4F9114);
+  border:1px solid var(--line);padding:38px;border-radius:14px;
+  position:relative;overflow:hidden;
+}
+.quote-card::after {
+  content:"“";position:absolute;right:10px;top:-60px;
+  font-size:200px;color:#FF4F9118;font-weight:900;
+}
+.quote-card blockquote {font-size:clamp(26px,3.5vw,40px);font-weight:900;line-height:1.2;position:relative;z-index:1}
+.quote-card p {margin-top:25px;font-size:13px}
+.section-heading {max-width:680px;margin-bottom:42px}
+.section-heading p {font-size:16px;max-width:590px}
+.directions-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.direction {
+  background:var(--panel);border:1px solid var(--line);
+  padding:26px;border-radius:12px;min-height:215px;
+  transition:transform .3s,border-color .3s;
+  position:relative;overflow:hidden;
+}
+.direction:hover {transform:translateY(-6px);border-color:#A875FF80}
+.direction .number {font-size:12px;color:var(--muted);letter-spacing:2px}
+.direction .symbol {font-size:34px;margin:22px 0 16px}
+.direction h3 {font-size:22px;letter-spacing:-.5px;margin-bottom:10px}
+.direction p {font-size:13px}
+.direction:nth-child(3n+1) .symbol {color:var(--pink)}
+.direction:nth-child(3n+2) .symbol {color:var(--turquoise)}
+.direction:nth-child(3n) .symbol {color:var(--purple)}
+.program-layout {display:grid;grid-template-columns:.7fr 1.3fr;gap:55px}
+.program-note {
+  background:linear-gradient(140deg,#FF4F911B,#A875FF12);
+  border:1px solid var(--line);padding:25px;border-radius:12px;
+  align-self:start;
+}
+.program-note strong {color:var(--turquoise);display:block;margin-bottom:10px}
+.timeline {border-top:1px solid var(--line)}
+.timeline-item {
+  display:grid;grid-template-columns:80px 1fr;gap:20px;
+  padding:23px 0;border-bottom:1px solid var(--line);
+}
+.timeline-item .time {color:var(--pink);font-weight:900;font-size:13px}
+.timeline-item h3 {font-size:18px;letter-spacing:0;margin-bottom:6px}
+.timeline-item p {font-size:13px}
+.steps {display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step {
+  padding:25px;border-top:2px solid var(--purple);
+  background:linear-gradient(180deg,#A875FF10,transparent);
+}
+.step:nth-child(2) {border-color:var(--pink)}
+.step:nth-child(3) {border-color:var(--turquoise)}
+.step .num {font-size:42px;font-weight:1000;color:#F7F4EE22}
+.step h3 {font-size:20px;letter-spacing:0;margin:12px 0}
+.step p {font-size:14px}
+.gallery-grid {display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:14px}
+.gallery-card {
+  min-height:220px;border-radius:12px;padding:22px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  overflow:hidden;position:relative;border:1px solid var(--line);
+}
+.gallery-card.large {grid-row:span 2;min-height:455px}
+.gallery-card::before,.gallery-card::after {
+  content:"";position:absolute;border-radius:50%;pointer-events:none;
+}
+.gallery-card::before {width:200px;height:200px;right:-50px;top:-40px;background:#FF4F9160;filter:blur(20px)}
+.gallery-card::after {width:140px;height:140px;left:-40px;bottom:-50px;background:#37D6C050;filter:blur(20px)}
+.gallery-card.purple {background:linear-gradient(145deg,#322443,#17171D)}
+.gallery-card.pink {background:linear-gradient(145deg,#482638,#17171D)}
+.gallery-card.teal {background:linear-gradient(145deg,#1D3B3B,#17171D)}
+.gallery-card.graphite {background:linear-gradient(145deg,#34313F,#17171D)}
+.gallery-art {
+  position:relative;z-index:1;font-size:clamp(45px,7vw,90px);
+  font-weight:1000;line-height:1;letter-spacing:-5px;
+}
+.gallery-card h3,.gallery-card p {position:relative;z-index:1}
+.gallery-card h3 {font-size:21px;letter-spacing:0}
+.gallery-card p {font-size:12px;color:#F7F4EEB5}
+.gallery-caption {font-size:12px;color:var(--muted);margin-top:15px}
+.register-box {
+  border:1px solid #A875FF65;
+  border-radius:18px;padding:clamp(25px,6vw,65px);
+  background:radial-gradient(ellipse at 95% 5%,#A875FF25,transparent 40%),
+             radial-gradient(ellipse at 5% 95%,#FF4F911A,transparent 35%),var(--panel);
+}
+.register-grid {display:grid;grid-template-columns:1fr .7fr;gap:40px;align-items:center}
+.register-box h2 {font-size:clamp(36px,5vw,62px)}
+.register-box p {margin-bottom:23px;max-width:540px}
+.qr-placeholder {
+  border:1px dashed #F7F4EE55;border-radius:12px;padding:20px;
+  text-align:center;display:flex;flex-direction:column;align-items:center;gap:13px;
+}
+.qr-empty {
+  width:130px;height:130px;border:1px solid #F7F4EE55;
+  display:grid;place-items:center;background:#17171D;
+}
+.qr-empty svg {width:75px;height:75px;opacity:.6}
+.qr-placeholder p {font-size:11px;margin:0}
+.notice {font-size:12px!important;color:var(--muted);margin-top:15px!important}
+.location-grid {display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:stretch}
+.location-card {
+  border:1px solid var(--line);background:var(--panel);
+  padding:28px;border-radius:12px;
+}
+.location-card h3 {font-size:22px;letter-spacing:0;margin-bottom:13px}
+.location-card p {font-size:14px}
+.location-card .big-icon {font-size:32px;color:var(--turquoise);margin-bottom:15px}
+.location-hint {margin-top:14px;color:var(--pink);font-size:12px}
+footer {border-top:1px solid var(--line);padding:30px 0}
+.footer-inner {display:flex;justify-content:space-between;gap:20px;align-items:center}
+.footer-inner p {font-size:12px}
+.footer-links {display:flex;gap:17px;font-size:12px;color:var(--muted)}
+.reveal {opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible {opacity:1;transform:translateY(0)}
+@keyframes float {0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(4deg)}}
+@keyframes marquee {to{transform:translateX(-50%)}}
+
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {animation:none!important;scroll-behavior:auto!important;transition:none!important}
+  .reveal {opacity:1;transform:none}
+}
+@media(max-width:850px) {
+  .nav-links {
+    display:none;position:absolute;top:76px;left:0;width:100%;
+    background:#17171DFA;padding:25px 5%;
+    border-bottom:1px solid var(--line);
+    flex-direction:column;align-items:stretch;gap:18px
+  }
+  .nav-links.open {display:flex}
+  .menu-btn {display:block}
+  .nav-links .btn {align-self:flex-start}
+  .hero-grid {grid-template-columns:1fr}
+  .hero-art {min-height:350px;grid-row:1}
+  .hero-copy {grid-row:2}
+  .hero h1 {font-size:clamp(65px,14vw,110px);letter-spacing:-5px}
+  .art-orb {width:280px}
+  .art-frame {width:215px;height:260px}
+  .about-grid,.program-layout,.register-grid,.location-grid {grid-template-columns:1fr;gap:28px}
+  .directions-grid {grid-template-columns:repeat(2,1fr)}
+  .steps {grid-template-columns:1fr}
+  .gallery-grid {grid-template-columns:1fr 1fr}
+  .gallery-card.large {grid-row:auto;min-height:300px;grid-column:span 2}
+  .register-grid {gap:35px}
+  .qr-placeholder {max-width:320px}
+}
+@media(max-width:520px) {
+  section {padding:72px 0}
+  .hero {padding-top:100px}
+  .hero-art {min-height:290px}
+  .art-orb {width:230px}
+  .art-frame {width:175px;height:215px}
+  .art-frame strong {font-size:66px}
+  .art-ring {height:290px}
+  .art-sticker {font-size:10px;right:0}
+  .hero-description {font-size:16px}
+  .hero-actions {flex-direction:column;align-items:stretch}
+  .hero-actions .btn {width:100%}
+  .directions-grid {grid-template-columns:1fr}
+  .direction {min-height:175px}
+  .gallery-grid {grid-template-columns:1fr}
+  .gallery-card.large {grid-column:auto;min-height:270px}
+  .gallery-card {min-height:200px}
+  .timeline-item {grid-template-columns:65px 1fr;gap:12px}
+  .quote-card {padding:27px}
+  .footer-inner {flex-direction:column;align-items:flex-start}
+  .scroll-note {display:none}
+}
+</style>
+</head>
+
+<body>
+
+<!--
+НАСТРОЙКИ САЙТА:
+1. Найди REGISTRATION_URL в скрипте внизу и вставь ссылку на Google Форму.
+2. Контакты и ссылки на социальные сети добавляй только после подтверждения.
+3. Подробная программа фестиваля будет опубликована после согласования.
+-->
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo" aria-label="ВНЕ РАМКИ — на главную">ВНЕ <span>РАМКИ.</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks" aria-label="Открыть меню">☰ Меню</button>
+    <nav class="nav-links" id="navLinks" aria-label="Основная навигация">
+      <a href="#about">О фестивале</a>
+      <a href="#directions">Направления</a>
+      <a href="#program">Программа</a>
+      <a href="#participants">Участникам</a>
+      <a href="#location">Место и время</a>
+      <a href="#register" class="btn">Присоединиться ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">Молодёжь · Творчество · Свобода</div>
+      <h1>ВНЕ<span class="line2 gradient-text">РАМКИ</span></h1>
+      <p class="hero-description">Твой голос. Твои правила. Твоё творчество. Пространство, где можно быть собой и не бояться показать миру, на что ты способен.</p>
+      <div class="hero-actions">
+        <a href="#register" class="btn">Хочу участвовать <span>↗</span></a>
+        <a href="#about" class="btn btn-outline">Открыть историю ↓</a>
+      </div>
+      <div class="hero-meta">
+        <span class="pill">17 мая 2027</span>
+        <span class="pill">14:00–18:00</span>
+        <span class="pill">Петропавловск</span>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-label="Абстрактная неоновая композиция">
+      <div class="art-orb"></div>
+      <div class="art-ring"></div>
+      <div class="art-ring two"></div>
+      <div class="art-frame"><strong>ВНЕ<br><span>РА</span><br>МКИ</strong></div>
+      <div class="art-sticker">БУДЬ СОБОЙ ↗</div>
+      <div class="art-star">✳</div>
+    </div>
+  </div>
+  <div class="scroll-note">ЛИСТАЙ НИЖЕ ↓</div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>ТВОЙ ГОЛОС</span><span>✳</span><span>ТВОИ ПРАВИЛА</span><span>✳</span><span>ТВОЁ ТВОРЧЕСТВО</span><span>✳</span><span>ВНЕ РАМКИ</span><span>✳</span>
+    <span>ТВОЙ ГОЛОС</span><span>✳</span><span>ТВОИ ПРАВИЛА</span><span>✳</span><span>ТВОЁ ТВОРЧЕСТВО</span><span>✳</span><span>ВНЕ РАМКИ</span><span>✳</span>
+  </div>
+</div>
+
+<section id="about">
+  <div class="container about-grid">
+    <div class="reveal">
+      <div class="eyebrow">01 / Наша идея</div>
+      <h2>Не вписывайся.<br><span class="gradient-text">Раскрывайся.</span></h2>
+      <div class="about-copy">
+        <p>«ВНЕ РАМКИ» — фестиваль молодёжного самовыражения, созданный для тех, кому есть что сказать миру.</p>
+        <p>Мы верим, что творчество не должно ограничиваться правилами, страхом ошибки или чужими ожиданиями. Иногда достаточно одного шага, чтобы открыть в себе что-то новое.</p>
+        <p>Здесь можно поделиться идеями, показать свои способности, познакомиться с единомышленниками и стать частью творческого сообщества.</p>
+      </div>
+    </div>
+    <div class="quote-card reveal">
+      <div class="eyebrow">Твоя история начинается здесь</div>
+      <blockquote>«Не нужно быть идеальным. Нужно быть <span class="gradient-text">настоящим</span>».</blockquote>
+      <p>Выйди за рамки привычного. Позволь себе больше.</p>
+    </div>
+  </div>
+</section>
+
+<section id="directions">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div class="eyebrow">02 / Точки самовыражения</div>
+      <h2>У каждого есть <span class="gradient-text">свой язык.</span></h2>
+      <p>Творчество звучит по-разному. Выбирай направление, которое тебе близко, или открывай для себя что-то новое.</p>
+    </div>
+
+    <div class="directions-grid">
+      <article class="direction reveal">
+        <div class="number">01 / SOUND</div>
+        <div class="symbol">♫</div>
+        <h3>Музыка</h3>
+        <p>Голос, ритм и мелодии, через которые можно рассказать свою историю.</p>
+      </article>
+      <article class="direction reveal">
+        <div class="number">02 / MOVE</div>
+        <div class="symbol">↗</div>
+        <h3>Танец</h3>
+        <p>Движение без лишних слов. Энергия, свобода и собственный стиль.</p>
+      </article>
+      <article class="direction reveal">
+        <div class="number">03 / FRAME</div>
+        <div class="symbol">▧</div>
+        <h3>Фотография</h3>
+        <p>Лови моменты, замечай необычное и показывай мир своим взглядом.</p>
+      </article>
+      <article class="direction reveal">
+        <div class="number">04 / ART</div>
+        <div class="symbol">✳</div>
+        <h3>Визуальное искусство</h3>
+        <p>Рисунки, авторские работы и образы, которым не нужны рамки.</p>
+      </article>
+      <article class="direction reveal">
+        <div class="number">05 / IDEAS</div>
+        <div class="symbol">⌁</div>
+        <h3>Идеи и проекты</h3>
+        <p>Предлагай необычное, делись задумками и вдохновляй окружающих.</p>
+      </article>
+      <article class="direction reveal">
+        <div class="number">06 / PEOPLE</div>
+        <div class="symbol">∞</div>
+        <h3>Общение</h3>
+        <p>Знакомься, находи единомышленников и становись частью сообщества.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="program">
+  <div class="container program-layout">
+    <div class="reveal">
+      <div class="eyebrow">03 / Как всё будет</div>
+      <h2>Твоя точка<br><span class="gradient-text">старта.</span></h2>
+      <p>Впереди творческая атмосфера, новые знакомства и возможность проявить себя. Подробное расписание появится после согласования программы.</p>
+      <div class="program-note" style="margin-top:26px">
+        <strong>✳ Программа уточняется</strong>
+        <p>Следи за обновлениями на сайте и в официальных информационных каналах проекта.</p>
+      </div>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="time">14:00</div>
+        <div><h3>Начало фестиваля</h3><p>Встреча гостей и знакомство с пространством события.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">ВПЕРЕДИ</div>
+        <div><h3>Творческие активности</h3><p>Форматы и расписание будут объявлены после утверждения программы.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">ВПЕРЕДИ</div>
+        <div><h3>Общение и новые идеи</h3><p>Время знакомиться, делиться творчеством и находить единомышленников.</p></div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">18:00</div>
+        <div><h3>Завершение фестиваля</h3><p>Окончание запланированного времени мероприятия.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="participants">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div class="eyebrow">04 / Твой выход</div>
+      <h2>Начни с одного <span class="gradient-text">шага.</span></h2>
+      <p>Не обязательно иметь большой опыт или идеальную работу. Главное — желание проявить себя.</p>
+    </div>
+    <div class="steps">
+      <article class="step reveal">
+        <div class="num">01</div>
+        <h3>Расскажи о себе</h3>
+        <p>Заполни регистрационную форму и укажи, как хочешь принять участие.</p>
+      </article>
+      <article class="step reveal">
+        <div class="num">02</div>
+        <h3>Поделись идеей</h3>
+        <p>Расскажи о своём творческом направлении или задумке для фестиваля.</p>
+      </article>
+      <article class="step reveal">
+        <div class="num">03</div>
+        <h3>Приходи и участвуй</h3>
+        <p>Следи за информацией организаторов и уточнениями по программе.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div class="eyebrow">05 / Атмосфера</div>
+      <h2>Покажи миру <span class="gradient-text">своё.</span></h2>
+      <p>Музыка, движение, идеи и люди. Здесь каждый может найти способ выразить себя.</p>
+    </div>
+
+    <!-- Абстрактные графические карточки вместо выдуманных фотографий -->
+    <div class="gallery-grid">
+      <article class="gallery-card large purple reveal">
+        <div class="gallery-art">ТВОЙ<br>МИР<span class="accent">.</span></div>
+        <div><h3>Творчество без границ</h3><p>У каждого своя история.</p></div>
+      </article>
+      <article class="gallery-card pink reveal">
+        <div class="gallery-art">♫</div>
+        <div><h3>Почувствуй ритм</h3><p>Музыка объединяет.</p></div>
+      </article>
+      <article class="gallery-card teal reveal">
+        <div class="gallery-art">↗</div>
+        <div><h3>Двигайся смело</h3><p>Выходи за привычное.</p></div>
+      </article>
+      <article class="gallery-card graphite reveal">
+        <div class="gallery-art">✳</div>
+        <div><h3>Создавай новое</h3><p>Идеи достойны быть увиденными.</p></div>
+      </article>
+      <article class="gallery-card purple reveal">
+        <div class="gallery-art">∞</div>
+        <div><h3>Находи своих</h3><p>Вместе интереснее.</p></div>
+      </article>
+    </div>
+    <p class="gallery-caption">Графические иллюстрации концепции фестиваля. Фотографии события можно добавить после подготовки реальных материалов.</p>
+  </div>
+</section>
+
+<section id="register">
+  <div class="container">
+    <div class="register-box reveal">
+      <div class="register-grid">
+        <div>
+          <div class="eyebrow">06 / Присоединяйся</div>
+          <h2>Твой выход.<br><span class="gradient-text">Твой момент.</span></h2>
+          <p>Готов показать себя? Заполни регистрационную форму, расскажи о своём интересе и следи за обновлениями фестиваля.</p>
+          <a href="#register" class="btn" id="registerBtn">Перейти к регистрации ↗</a>
+          <p class="notice" id="registerNotice">Ссылка на регистрацию будет добавлена организаторами.</p>
+        </div>
+
+        <div class="qr-placeholder">
+          <div class="qr-empty" aria-label="Место для QR-кода">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#F7F4EE" stroke-width="5" aria-hidden="true">
+              <rect x="8" y="8" width="28" height="28"/>
+              <rect x="64" y="8" width="28" height="28"/>
+              <rect x="8" y="64" width="28" height="28"/>
+              <path d="M52 8h6v6h-6zM46 24h8v8h-8zM64 48h8v8h-8zM80 48h12v8H80zM48 64h8v8h-8zM60 76h8v16H60zM76 64h16v8H76zM44 84h8v8h-8z"/>
+            </svg>
+          </div>
+          <strong>QR-код регистрации</strong>
+          <p>Здесь можно разместить настоящий QR-код, ведущий на Google Форму.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div class="eyebrow">07 / Встречаемся в городе</div>
+      <h2>Сохрани дату.<br><span class="gradient-text">Будь с нами.</span></h2>
+    </div>
+    <div class="location-grid">
+      <article class="location-card reveal">
+        <div class="big-icon">◷</div>
+        <h3>Когда?</h3>
+        <p>17 мая 2027 года</p>
+        <p>С 14:00 до 18:00</p>
+      </article>
+      <article class="location-card reveal">
+        <div class="big-icon">⌖</div>
+        <h3>Где?</h3>
+        <p>Городской парк культуры и отдыха</p>
+        <p>Петропавловск, Казахстан</p>
+        <p class="location-hint">Площадка требует согласования. Следи за обновлениями.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
+  <div class="container">
+    <div class="quote-card reveal">
+      <div class="eyebrow">Твой голос имеет значение</div>
+      <blockquote>Мир не узнает о тебе, пока ты не решишь <span class="gradient-text">показать себя.</span></blockquote>
+      <p>«ВНЕ РАМКИ» — пространство молодёжного самовыражения.</p>
+      <a href="#register" class="btn" style="margin-top:25px">Сделать первый шаг ↗</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <a href="#home" class="logo">ВНЕ <span>РАМКИ.</span></a>
+    <p>© 2027 · Молодёжный фестиваль самовыражения</p>
+    <div class="footer-links">
+      <a href="#about">О проекте</a>
+      <a href="#register">Регистрация</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ВСТАВЬ ССЫЛКУ НА GOOGLE ФОРМУ МЕЖДУ КАВЫЧКАМИ.
+   Пример: const REGISTRATION_URL = "https://docs.google.com/forms/...";
+*/
+const REGISTRATION_URL = "";
+
+const registerBtn = document.getElementById("registerBtn");
+const registerNotice = document.getElementById("registerNotice");
+
+if (REGISTRATION_URL.trim() !== "") {
+  registerBtn.href = REGISTRATION_URL;
+  registerBtn.target = "_blank";
+  registerBtn.rel = "noopener noreferrer";
+  registerNotice.textContent = "Откроется регистрационная форма.";
+} else {
+  registerBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    registerNotice.textContent =
+      "Регистрация пока настраивается. Организаторы добавят ссылку на форму.";
+  });
+}
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", function() {
+  const isOpen = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  menuBtn.textContent = isOpen ? "✕ Закрыть" : "☰ Меню";
+});
+
+navLinks.querySelectorAll("a").forEach(function(link) {
+  link.addEventListener("click", function() {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰ Меню";
+  });
+});
+
+const revealItems = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.12});
+
+  revealItems.forEach(function(item) {
+    observer.observe(item);
+  });
+} else {
+  revealItems.forEach(function(item) {
+    item.classList.add("visible");
+  });
+}
+</script>
+
+</body>
+</html>
